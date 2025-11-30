@@ -1,8 +1,8 @@
 # keylogger-python
 
-# projeto do bootcamp de cybersecurity do banco santander
+- Projeto do bootcamp de cybersecurity do banco santander
 
-# AVISO, esse script não foi desenvolvido nem deve ser utilizado para fins maliciosos, apenas educacionais.
+!! AVISO, esse script não foi desenvolvido nem deve ser utilizado para fins maliciosos, apenas educacionais.
 
 O QUE UM KEYLOGGER FAZ?
 Esse script registra todos os inputs do teclado do usuário e os registra em um arquivo .txt, excluindo apenas algumas teclas que não são relevantes para o atacante, e em seguida envia tudo para um E-mail selecionado a cada 60 segundos com os logs que o malware registrou.
