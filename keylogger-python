@@ -19,9 +19,9 @@ from email.mime.text import MIMEText
 from threading import Timer
 
 #config email
-EMAIL_ORIGEM = "flohrtestes@gmail.com"
-EMAIL_DESTINO = "flohrtestes@gmail.com"
-SENHA_EMAIL = "cyls cjxq olcj xlgw"
+EMAIL_ORIGEM = "email@gmail.com"
+EMAIL_DESTINO = "email@gmail.com"
+SENHA_EMAIL = "abcd efgh ijkl mnop"
 
 log = ""
 
